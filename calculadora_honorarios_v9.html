@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Honorarios · Proceso Laboral · Córdoba</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F7F8FA;--wh:#fff;--s2:#F1F3F5;
+  --bd:#E4E7EB;--tx:#22262B;--tx2:#667085;--tx3:#98A2B3;
+  --ac:#2272C7;--ac-bg:#EBF5FF;--ac-bd:#8FCBFF;--ac-tx:#1863A8;
+  --ok:#2F9E44;--ok-bg:#EBFBEE;--ok-bd:#8CE99A;--ok-tx:#2B8A3E;
+  --wa-bg:#FFF7E0;--wa-bd:#FFD968;--wa-tx:#A6650B;
+  --pu-bg:#F4F1FF;--pu-bd:#C2AEFF;--pu-tx:#6741D9;
+  --r:10px;--rl:16px;
+  --sh:0 1px 2px rgba(16,24,40,.04),0 1px 3px rgba(16,24,40,.06);
+  --f:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+body{font-family:var(--f);font-size:14px;color:var(--tx);background:var(--bg);line-height:1.45}
+a{color:var(--ac)}
+.topbar{background:linear-gradient(120deg,#1863A8,#2272C7);color:#fff;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.t1{font-size:17px;font-weight:700}
+.t2{font-size:12px;opacity:.8;margin-top:3px}
+.jp{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:7px 16px;font-size:12px;text-align:right}
+.jp .jl{opacity:.75;font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+.jp .jv{font-weight:700;font-size:13px}
+.wrap{max-width:920px;margin:0 auto;padding:22px 16px 40px}
+.lead{background:var(--wh);border:1px solid var(--bd);border-radius:var(--rl);box-shadow:var(--sh);padding:14px 20px;font-size:13px;color:var(--tx2);line-height:1.6;margin-bottom:18px}
+.tabs{background:var(--s2);border:1px solid var(--bd);border-radius:13px;padding:4px;display:inline-flex;gap:4px;margin-bottom:20px}
+.tab{padding:9px 18px;border:none;background:none;cursor:pointer;font-size:13.5px;color:var(--tx2);border-radius:10px;font-family:var(--f);font-weight:600;transition:background .15s,color .15s}
+.tab.on{background:#fff;color:var(--ac-tx);box-shadow:var(--sh)}
+.pnl{display:none}.pnl.on{display:block}
+.card{background:var(--wh);border:1px solid var(--bd);border-radius:var(--rl);box-shadow:var(--sh);padding:18px 22px;margin-bottom:16px}
+.ctit{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tx3);margin-bottom:4px}
+.chint{font-size:12px;color:var(--tx2);margin-bottom:14px;line-height:1.5}
+.sumcard{background:linear-gradient(135deg,#EBF5FF 0%,#F4F1FF 100%);border:1px solid var(--ac-bd);border-radius:var(--rl);box-shadow:var(--sh);padding:18px 22px;margin-bottom:16px}
+.sum-row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;font-size:13px;color:var(--tx2)}
+.sum-row.sub{padding-left:16px;font-size:11.5px;color:var(--tx3)}
+.sum-row.total{border-top:1px solid var(--ac-bd);margin-top:6px;padding-top:12px;font-weight:700;font-size:14.5px;color:var(--ac-tx)}
+.sum-v{font-weight:600;white-space:nowrap}
+.sum-row.total .sum-v{font-size:19px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.g2{grid-template-columns:1fr}}
+.fld{display:flex;flex-direction:column;gap:4px}
+.fld label{font-size:12px;color:var(--tx2);font-weight:600}
+.fld input,.fld select{border:1px solid var(--bd);border-radius:var(--r);padding:9px 11px;font-size:14px;font-family:var(--f);color:var(--tx);background:var(--wh);width:100%}
+.fld input:focus,.fld select:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px var(--ac-bg)}
+.fld .hint{font-size:11px;color:var(--tx3)}
+.sc-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.sb{padding:8px 16px;border:1px solid var(--bd);border-radius:var(--r);background:none;cursor:pointer;font-size:13px;color:var(--tx2);font-family:var(--f);font-weight:600;transition:background .15s,border-color .15s}
+.sb:hover{background:var(--s2)}
+.sb.on{background:var(--ac-bg);border-color:var(--ac-bd);color:var(--ac-tx)}
+.info{font-size:12px;color:var(--ac-tx);background:var(--ac-bg);border-radius:var(--r);padding:10px 13px;border-left:3px solid var(--ac);margin-top:10px;line-height:1.55}
+.lgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.lgrid{grid-template-columns:1fr}}
+.lcol{border-radius:var(--rl);border:1px solid var(--bd);overflow:hidden}
+.lcol.ac .lhead{background:var(--ac-bg);color:var(--ac-tx);border-bottom:1px solid var(--ac-bd)}
+.lcol.dm .lhead{background:var(--pu-bg);color:var(--pu-tx);border-bottom:1px solid var(--pu-bd)}
+.lhead{padding:11px 14px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.lbody{padding:14px}
+.msec{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--bd)}
+.msec:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.mlbl{font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.mhint{font-size:11px;color:var(--tx3);margin-bottom:8px;line-height:1.5}
+.egrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.ei{display:flex;align-items:center;gap:7px;background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);padding:8px 10px;cursor:pointer;user-select:none;transition:background .15s,border-color .15s}
+.ei:hover{border-color:var(--tx3)}
+.ei.on{background:var(--ok-bg);border-color:var(--ok-bd)}
+.ei input[type=checkbox]{width:14px;height:14px;flex-shrink:0;accent-color:var(--ok);cursor:pointer}
+.ei .el{font-size:12px;font-weight:600;color:var(--tx)}
+.ei.on .el{color:var(--ok-tx)}
+.ei .ep{font-size:11px;color:var(--tx2);margin-left:auto;font-weight:700;white-space:nowrap}
+.ei.on .ep{color:var(--ok-tx)}
+.esum{background:var(--s2);border-radius:var(--r);padding:9px 12px;display:flex;justify-content:space-between;align-items:center}
+.esum-l{font-size:12px;color:var(--tx2)}
+.esum-v{font-size:14px;font-weight:700}
+.esum-v.full{color:var(--ok-tx)}.esum-v.part{color:var(--wa-tx)}
+.slwrap{margin-bottom:6px}
+.sltop{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.sltop-lbl{font-size:11px;color:var(--tx2);font-weight:600}
+.badge-ac{font-size:12px;font-weight:700;color:var(--ac-tx);background:var(--ac-bg);border:1px solid var(--ac-bd);border-radius:20px;padding:2px 9px}
+.badge-ok{font-size:12px;font-weight:700;color:var(--ok-tx);background:var(--ok-bg);border:1px solid var(--ok-bd);border-radius:20px;padding:2px 9px}
+input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
+.slends{display:flex;justify-content:space-between;font-size:10px;color:var(--tx3);margin-top:2px}
+.base-result{background:var(--ac-bg);border:1px solid var(--ac-bd);border-radius:var(--r);padding:8px 12px;margin-top:6px;display:flex;justify-content:space-between;align-items:center}
+.br-lbl{font-size:11px;color:var(--ac-tx)}
+.br-val{font-size:15px;font-weight:700;color:var(--ac-tx)}
+.rbox{border-radius:var(--r);padding:12px 14px;margin-bottom:8px}
+.rbox.ac{background:var(--ac-bg);border:1px solid var(--ac-bd)}
+.rbox.dm{background:var(--pu-bg);border:1px solid var(--pu-bd)}
+.rl2{font-size:11px;color:var(--tx2);margin-bottom:3px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.neg{color:#c92a2a;font-weight:700}
+.rawline{font-size:12px;color:var(--tx2);margin-top:4px}
+.rawline .neg{font-size:13px}
+.rv{font-size:23px;font-weight:700}
+.rbox.ac .rv{color:var(--ac-tx)}.rbox.dm .rv{color:var(--pu-tx)}
+.rj{font-size:12px;color:var(--tx2);margin-top:2px}
+.bwarn{display:inline-flex;align-items:center;background:var(--wa-bg);color:var(--wa-tx);font-size:10px;padding:2px 7px;border-radius:20px;font-weight:700;border:1px solid var(--wa-bd)}
+.ctbl{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px}
+.ctbl th{text-align:left;color:var(--tx3);font-weight:600;padding:4px 5px;border-bottom:1px solid var(--bd);font-size:10px;text-transform:uppercase}
+.ctbl td{padding:5px 5px;border-bottom:1px solid var(--bd)}
+.ctbl tr:last-child td{border-bottom:none}
+.ctbl tr.sel td{font-weight:700;background:var(--s2)}
+.ptxt{font-size:10px;color:var(--wa-tx);font-weight:700}
+.pblock{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px;margin-bottom:8px}
+.ptop{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:8px;flex-wrap:wrap}
+.pname{font-size:13px;font-weight:700}
+.pbdg{font-size:11px;padding:3px 9px;border-radius:20px;font-weight:600}
+.pbdg.cnt{background:#E1F5EE;color:#085041}
+.pbdg.med{background:#FCEBEB;color:#791F1F}
+.pbdg.ing{background:#E7F5FF;color:#1864AB}
+.pbdg.tec{background:#F1F3F5;color:#495057}
+.pbdg.ot{background:#FFF9DB;color:#7d5400}
+.pgrid{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;margin-bottom:10px}
+@media(max-width:500px){.pgrid{grid-template-columns:1fr 1fr}}
+.ivatog{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--tx2);cursor:pointer;font-weight:600;padding-bottom:6px}
+.ivatog input{accent-color:var(--ac);width:15px;height:15px}
+.prows{border-top:1px solid var(--bd);padding-top:8px}
+.pr{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--bd)}
+.pr:last-child{border-bottom:none}
+.prl{font-size:12px;color:var(--tx2)}.prv{font-size:12px;font-weight:700}
+.delbtn{background:none;border:none;cursor:pointer;font-size:12px;color:#c92a2a;font-family:var(--f);margin-top:8px;padding:0;font-weight:600}
+.addbtn{width:100%;border:1.5px dashed var(--ac-bd);border-radius:var(--r);background:var(--ac-bg);color:var(--ac-tx);font-family:var(--f);font-size:13px;font-weight:700;padding:11px;cursor:pointer;margin-top:4px;transition:background .15s}
+.addbtn:hover{background:#DCEEFF}
+.trow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--bd)}
+.trow:last-child{border-bottom:none}
+.trl{font-size:13px;color:var(--tx2)}.trv{font-size:13px;font-weight:700}
+.trow.sub .trl{padding-left:14px;font-size:12px;color:var(--tx3)}.trow.sub .trv{font-size:12px}
+.trow.tot .trl{font-weight:700;color:var(--tx)}.trow.tot .trv{color:var(--ac-tx);font-size:14px}
+.foot{text-align:center;padding:22px 16px;font-size:11px;color:var(--tx3);border-top:1px solid var(--bd);margin-top:6px;line-height:1.9}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div><div class="t1">Calculadora de honorarios · Proceso laboral</div><div class="t2">Cámara Única del Trabajo · Córdoba · Art. 97 Ley 9459 / Ley 11.042</div></div>
+  <div class="jp"><div class="jl">Jus / UE vigente</div><div class="jv" id="jusdisplay">$46.927,21 · $12.368.295,26</div></div>
+</div>
+
+<div class="wrap">
+<div class="lead">Calculá los honorarios del abogado actor, del abogado demandada y de los peritos intervinientes en un juicio laboral, según las etapas del proceso que se cumplieron y cómo terminó la causa. Cargá los montos, elegí un escenario y ajustá los criterios dentro de los márgenes que permite la ley — el resumen general se actualiza solo.</div>
+
+<div class="tabs">
+  <button class="tab on" onclick="swTab('v')">CA Viejo · Ley 9459</button>
+  <button class="tab" onclick="swTab('n')">CA Nuevo · Ley 11.042</button>
+</div>
+
+<div class="pnl on" id="pv">
+  <div class="sumcard">
+    <div class="ctit">Resumen general</div>
+    <div class="chint">Vista consolidada de todos los rubros calculados más abajo. Cada uno puede corresponder a una parte distinta del proceso.</div>
+    <div id="v-resumen"></div>
+  </div>
+  <div class="card">
+    <div class="ctit">Datos base</div>
+    <div class="chint">Cargá los montos de la sentencia: son la base de todo el cálculo posterior.</div>
+    <div class="g2" style="margin-bottom:12px">
+      <div class="fld"><label>Capital histórico ($)</label><input type="number" id="v-cap" value="0" oninput="upd('v')"></div>
+      <div class="fld"><label>Intereses / actualización ($)</label><input type="number" id="v-int" value="0" oninput="upd('v')"><span class="hint">Calculalos con la <a href="https://www.bcra.gob.ar/calculadora-intereses-creditos-laborales-judicializados/" target="_blank">calculadora de intereses del BCRA</a></span></div>
+    </div>
+    <div class="g2">
+      <div class="fld"><label>Demanda actualizada ($)</label><input type="number" id="v-dem" value="0" oninput="upd('v')"><span class="hint">Actualizala con <a href="https://www.justiciacordoba.gob.ar/planillacalculosjudiciales/Pages/CalculadoraTasa.aspx" target="_blank">SEREN (TSJ Córdoba)</a></span></div>
+      <div class="fld">
+        <label>Valor del jus ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
+        <input type="number" id="v-jus" value="46927.21" oninput="upd('v');updJus('v')">
+        <span class="hint"><a href="https://www.justiciacordoba.gob.ar/justiciacordoba/Servicios/JUSyUnidadEconomica/1" target="_blank">ver TSJ</a></span>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="fld">
+        <label>Valor de la Unidad Económica — UE ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
+        <input type="number" id="v-ue" value="12368295.26" oninput="upd('v');updJus('v')">
+        <span class="hint">Define el tramo de la escala de mínimos del art. 36 según la base regulatoria</span>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ctit">Escenario</div>
+    <div class="chint">Elegí cómo terminó el juicio: esto define qué base regulatoria corresponde a cada abogado.</div>
+    <div class="sc-row">
+      <button class="sb on" id="v-sc-parcial" onclick="setSc('v','parcial')">Acogimiento parcial</button>
+      <button class="sb" id="v-sc-total" onclick="setSc('v','total')">Acogimiento total</button>
+      <button class="sb" id="v-sc-rechazo" onclick="setSc('v','rechazo')">Rechazo</button>
+    </div>
+    <div class="info" id="v-info">Base actor: monto sentencia (fijo) · Base demandada: 10% – 50% de la demanda actualizada (art. 31 inc. 2)</div>
+  </div>
+  <div class="card">
+    <div class="ctit">Honorarios letrados</div>
+    <div class="chint">Marcá las etapas cumplidas y ajustá los porcentajes dentro del rango legal para cada abogado.</div>
+    <div class="lgrid">
+      <div class="lcol ac">
+        <div class="lhead">Abogado actor</div>
+        <div class="lbody">
+          <div class="msec">
+            <div class="mlbl">1. Etapas cumplidas (art. 97)</div>
+            <div class="mhint">Si falta alguna etapa, el honorario se reduce proporcionalmente.</div>
+            <div class="egrid" id="v-a-eg"></div>
+            <div class="esum"><span class="esum-l">Factor</span><span class="esum-v full" id="v-a-ef">100%</span></div>
+          </div>
+          <div class="msec">
+            <div class="mlbl">2. Base regulatoria (art. 31)</div>
+            <div class="slwrap">
+              <div class="sltop"><span class="sltop-lbl" id="v-a-brango">Monto sentencia</span><span class="badge-ac" id="v-a-bbadge">fijo</span></div>
+              <input type="range" id="v-a-bsl" min="10" max="30" step="1" value="20" oninput="upd('v')" disabled>
+              <div class="slends" id="v-a-bends"><span></span><span></span></div>
+            </div>
+            <div class="base-result"><span class="br-lbl">Base seleccionada</span><span class="br-val" id="v-a-bval">—</span></div>
+          </div>
+          <div class="msec">
+            <div class="mlbl">3. Criterio art. 36 (escala según UE)</div>
+            <div class="mhint" id="v-a-tramo36">Base = — UE · Escala —</div>
+            <div class="slwrap">
+              <div class="sltop"><span class="sltop-lbl">Porcentaje aplicado dentro del rango legal</span><span class="badge-ok" id="v-a-cbadge">22.5%</span></div>
+              <input type="range" id="v-a-csl" min="20" max="25" step="0.1" value="22.5" oninput="upd('v')">
+              <div class="slends"><span id="v-a-cmin">20%</span><span id="v-a-cmax">25%</span></div>
+            </div>
+          </div>
+          <div class="msec">
+            <div class="mlbl">4. Adicionales</div>
+            <label class="ei" for="v-a-104"><input type="checkbox" id="v-a-104" onchange="this.closest('label').classList.toggle('on',this.checked);upd('v')"><span class="el">Se solicitó — Art. 104 inc. 5</span><span class="ep">+3 jus</span></label>
+          </div>
+          <div class="msec" style="border-bottom:none;margin-bottom:0;padding-bottom:0">
+            <div class="mlbl">Resultado</div>
+            <div id="v-a-res"></div>
+          </div>
+        </div>
+      </div>
+      <div class="lcol dm">
+        <div class="lhead">Abogado demandada</div>
+        <div class="lbody">
+          <div class="msec">
+            <div class="mlbl">1. Etapas cumplidas (art. 97)</div>
+            <div class="mhint">Si falta alguna etapa, el honorario se reduce proporcionalmente.</div>
+            <div class="egrid" id="v-d-eg"></div>
+            <div class="esum"><span class="esum-l">Factor</span><span class="esum-v full" id="v-d-ef">100%</span></div>
+          </div>
+          <div class="msec">
+            <div class="mlbl">2. Base regulatoria (art. 31)</div>
+            <div class="slwrap">
+              <div class="sltop"><span class="sltop-lbl" id="v-d-brango">10% – 50% demanda</span><span class="badge-ac" id="v-d-bbadge">30%</span></div>
+              <input type="range" id="v-d-bsl" min="10" max="50" step="1" value="30" oninput="upd('v')">
+              <div class="slends" id="v-d-bends"><span></span><span></span></div>
+            </div>
+            <div class="base-result"><span class="br-lbl">Base seleccionada</span><span class="br-val" id="v-d-bval">—</span></div>
+          </div>
+          <div class="msec">
+            <div class="mlbl">3. Criterio art. 36 (escala según UE)</div>
+            <div class="mhint" id="v-d-tramo36">Base = — UE · Escala —</div>
+            <div class="slwrap">
+              <div class="sltop"><span class="sltop-lbl">Porcentaje aplicado dentro del rango legal</span><span class="badge-ok" id="v-d-cbadge">22.5%</span></div>
+              <input type="range" id="v-d-csl" min="20" max="25" step="0.1" value="22.5" oninput="upd('v')">
+              <div class="slends"><span id="v-d-cmin">20%</span><span id="v-d-cmax">25%</span></div>
+            </div>
+          </div>
+          <div class="msec" style="border-bottom:none;margin-bottom:0;padding-bottom:0">
+            <div class="mlbl">Resultado</div>
+            <div id="v-d-res"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ctit">Peritos</div>
+    <div class="chint">Sumá los peritos que intervinieron. Cada uno tiene su propia escala de jus, independiente de los demás.</div>
+    <div id="v-peritos"></div><button class="addbtn" onclick="addP('v')">+ Agregar perito</button>
+  </div>
+  <div class="card">
+    <div class="ctit">Tasa de justicia y aportes</div>
+    <div class="chint">Se calculan automáticamente sobre el monto total actualizado.</div>
+    <div id="v-tasas"></div>
+  </div>
+</div>
+
+<div class="pnl" id="pn">
+  <div class="sumcard">
+    <div class="ctit">Resumen general</div>
+    <div class="chint">Vista consolidada de todos los rubros calculados más abajo. Cada uno puede corresponder a una parte distinta del proceso.</div>
+    <div id="n-resumen"></div>
+  </div>
+  <div class="card">
+    <div class="ctit">Datos base</div>
+    <div class="chint">Cargá los montos de la sentencia: son la base de todo el cálculo posterior.</div>
+    <div class="g2" style="margin-bottom:12px">
+      <div class="fld"><label>Capital histórico ($)</label><input type="number" id="n-cap" value="0" oninput="upd('n')"></div>
+      <div class="fld"><label>Intereses / actualización ($)</label><input type="number" id="n-int" value="0" oninput="upd('n')"><span class="hint">Calculalos con la <a href="https://www.bcra.gob.ar/calculadora-intereses-creditos-laborales-judicializados/" target="_blank">calculadora de intereses del BCRA</a></span></div>
+    </div>
+    <div class="g2">
+      <div class="fld"><label>Demanda actualizada ($)</label><input type="number" id="n-dem" value="0" oninput="upd('n')"><span class="hint">Actualizala con <a href="https://www.justiciacordoba.gob.ar/planillacalculosjudiciales/Pages/CalculadoraTasa.aspx" target="_blank">SEREN (TSJ Córdoba)</a></span></div>
+      <div class="fld">
+        <label>Valor del jus ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
+        <input type="number" id="n-jus" value="46927.21" oninput="upd('n');updJus('n')">
+        <span class="hint"><a href="https://www.justiciacordoba.gob.ar/justiciacordoba/Servicios/JUSyUnidadEconomica/1" target="_blank">ver TSJ</a></span>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="fld">
+        <label>Valor de la Unidad Económica — UE ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
+        <input type="number" id="n-ue" value="12368295.26" oninput="upd('n');updJus('n')">
+        <span class="hint">Define el tramo de la escala de mínimos del art. 36 según la base regulatoria</span>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ctit">Escenario</div>
+    <div class="chint">Elegí cómo terminó el juicio: esto define qué base regulatoria corresponde a cada abogado.</div>
+    <div class="sc-row">
+      <button class="sb on" id="n-sc-parcial" onclick="setSc('n','parcial')">Acogimiento parcial</button>
+      <button class="sb" id="n-sc-total" onclick="setSc('n','total')">Acogimiento total</button>
+      <button class="sb" id="n-sc-rechazo" onclick="setSc('n','rechazo')">Rechazo</button>
+    </div>
+    <div class="info" id="n-info">Base actor: monto sentencia (fijo) · Base demandada: MAX(condena − demanda ; 50% demanda)</div>
+  </div>
+  <div class="card">
+    <div class="ctit">Honorarios letrados</div>
+    <div class="chint">Marcá las etapas cumplidas y ajustá los porcentajes dentro del rango legal para cada abogado.</div>
+    <div class="lgrid">
+      <div class="lcol ac">
+        <div class="lhead">Abogado actor</div>
+        <div class="lbody">
+          <div class="msec"><div class="mlbl">1. Etapas cumplidas (art. 97)</div><div class="mhint">Si falta alguna etapa, el honorario se reduce proporcionalmente.</div><div class="egrid" id="n-a-eg"></div><div class="esum"><span class="esum-l">Factor</span><span class="esum-v full" id="n-a-ef">100%</span></div></div>
+          <div class="msec">
+            <div class="mlbl">2. Base regulatoria (art. 31)</div>
+            <div class="slwrap">
+              <div class="sltop"><span class="sltop-lbl" id="n-a-brango">Monto sentencia</span><span class="badge-ac" id="n-a-bbadge">fijo</span></div>
+              <input type="range" id="n-a-bsl" min="10" max="30" step="1" value="20" oninput="upd('n')" disabled>
+              <div class="slends" id="n-a-bends"><span></span><span></span></div>
+            </div>
+            <div class="base-result"><span class="br-lbl">Base seleccionada</span><span class="br-val" id="n-a-bval">—</span></div>
+          </div>
+          <div class="msec">
+            <div class="mlbl">3. Criterio art. 36 (escala según UE)</div>
+            <div class="mhint" id="n-a-tramo36">Base = — UE · Escala —</div>
+            <div class="slwrap">
+              <div class="sltop"><span class="sltop-lbl">Porcentaje aplicado dentro del rango legal</span><span class="badge-ok" id="n-a-cbadge">22.5%</span></div>
+              <input type="range" id="n-a-csl" min="20" max="25" step="0.1" value="22.5" oninput="upd('n')">
+              <div class="slends"><span id="n-a-cmin">20%</span><span id="n-a-cmax">25%</span></div>
+            </div>
+          </div>
+          <div class="msec">
+            <div class="mlbl">4. Adicionales</div>
+            <label class="ei" for="n-a-104"><input type="checkbox" id="n-a-104" onchange="this.closest('label').classList.toggle('on',this.checked);upd('n')"><span class="el">Se solicitó — Art. 104 inc. 5</span><span class="ep">+3 jus</span></label>
+          </div>
+          <div class="msec" style="border-bottom:none;margin-bottom:0;padding-bottom:0"><div class="mlbl">Resultado</div><div id="n-a-res"></div></div>
+        </div>
+      </div>
+      <div class="lcol dm">
+        <div class="lhead">Abogado demandada</div>
+        <div class="lbody">
+          <div class="msec"><div class="mlbl">1. Etapas cumplidas (art. 97)</div><div class="mhint">Si falta alguna etapa, el honorario se reduce proporcionalmente.</div><div class="egrid" id="n-d-eg"></div><div class="esum"><span class="esum-l">Factor</span><span class="esum-v full" id="n-d-ef">100%</span></div></div>
+          <div class="msec">
+            <div class="mlbl">2. Base regulatoria (art. 31)</div>
+            <div class="slwrap">
+              <div class="sltop"><span class="sltop-lbl" id="n-d-brango">—</span><span class="badge-ac" id="n-d-bbadge">—</span></div>
+              <input type="range" id="n-d-bsl" min="10" max="50" step="1" value="30" oninput="upd('n')">
+              <div class="slends" id="n-d-bends"><span></span><span></span></div>
+            </div>
+            <div class="base-result"><span class="br-lbl">Base seleccionada</span><span class="br-val" id="n-d-bval">—</span></div>
+          </div>
+          <div class="msec">
+            <div class="mlbl">3. Criterio art. 36 (escala según UE)</div>
+            <div class="mhint" id="n-d-tramo36">Base = — UE · Escala —</div>
+            <div class="slwrap">
+              <div class="sltop"><span class="sltop-lbl">Porcentaje aplicado dentro del rango legal</span><span class="badge-ok" id="n-d-cbadge">22.5%</span></div>
+              <input type="range" id="n-d-csl" min="20" max="25" step="0.1" value="22.5" oninput="upd('n')">
+              <div class="slends"><span id="n-d-cmin">20%</span><span id="n-d-cmax">25%</span></div>
+            </div>
+          </div>
+          <div class="msec" style="border-bottom:none;margin-bottom:0;padding-bottom:0"><div class="mlbl">Resultado</div><div id="n-d-res"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ctit">Peritos</div>
+    <div class="chint">Sumá los peritos que intervinieron. Cada uno tiene su propia escala de jus, independiente de los demás.</div>
+    <div id="n-peritos"></div><button class="addbtn" onclick="addP('n')">+ Agregar perito</button>
+  </div>
+  <div class="card">
+    <div class="ctit">Tasa de justicia y aportes</div>
+    <div class="chint">Se calculan automáticamente sobre el monto total actualizado.</div>
+    <div id="n-tasas"></div>
+  </div>
+</div>
+
+<div class="foot">Honorarios · Fuero Laboral · Córdoba · Art. 97 Ley 9459 · Ley 11.042<br>Jus y UE: <a href="https://www.justiciacordoba.gob.ar/justiciacordoba/Servicios/JUSyUnidadEconomica/1" target="_blank">Tribunal Superior de Justicia de Córdoba</a> · actualizar el jus manualmente cada mes</div>
+</div>
+
+<script>
+var ETAPAS=[
+  {id:'e1',label:'Demanda y contestación',pct:0.30},
+  {id:'e2',label:'Ofrecimiento de prueba',pct:0.15},
+  {id:'e3',label:'Producción de prueba',pct:0.15},
+  {id:'e4',label:'Vista de causa',pct:0.40}
+];
+var TIPOS={
+  medico:   {label:'Médico/psiq./psic.',  aporte:0.15, badge:'med', jus:12},
+  contador: {label:'Contador',            aporte:0.10, badge:'cnt', jus:8},
+  ingeniero:{label:'Ingeniero',           aporte:0.09, badge:'ing', jus:10},
+  tecnico:  {label:'Técnico (sin aporte)',aporte:0,    badge:'tec', jus:10},
+  otro:     {label:'Otro (sin aporte)',   aporte:0,    badge:'ot',  jus:10}
+};
+var ESCALA36=[
+  {max:5,   min:20, label:'Hasta 5 UE'},
+  {max:15,  min:18, label:'Más de 5 y hasta 15 UE'},
+  {max:30,  min:16, label:'Más de 15 y hasta 30 UE'},
+  {max:50,  min:14, label:'Más de 30 y hasta 50 UE'},
+  {max:100, min:12, label:'Más de 50 y hasta 100 UE'},
+  {max:Infinity, min:10, label:'Más de 100 UE'}
+];
+function getEscala36(baseUE){
+  for(var i=0;i<ESCALA36.length;i++){ if(baseUE<=ESCALA36[i].max) return ESCALA36[i]; }
+  return ESCALA36[ESCALA36.length-1];
+}
+var INFO={
+  v:{
+    parcial:'Base actor: monto sentencia (fijo) · Base demandada: 10% – 50% de la demanda actualizada (art. 31 inc. 2)',
+    total:  'Base actor: monto sentencia (fijo) · Base demandada: 10% – 30% del monto sentencia (art. 31 inc. 2)',
+    rechazo:'Base actor: 10% – 30% del crédito reclamado (art. 31 inc. 1) · Base demandada: crédito + intereses (fijo)'
+  },
+  n:{
+    parcial:'Base actor: monto sentencia (fijo) · Base demandada: MAX(condena − demanda ; 50% demanda)',
+    total:  'Base actor: monto sentencia (fijo) · Base demandada: monto sentencia (fijo)',
+    rechazo:'Base actor: 10% – 30% del crédito reclamado · Base demandada: crédito + intereses (fijo)'
+  }
+};
+
+var etapas={
+  v:{a:{e1:1,e2:1,e3:1,e4:1},d:{e1:1,e2:1,e3:1,e4:1}},
+  n:{a:{e1:1,e2:1,e3:1,e4:1},d:{e1:1,e2:1,e3:1,e4:1}}
+};
+var scenario={v:'parcial',n:'parcial'};
+var peritos={v:[],n:[]};
+var pcnt={v:1,n:1};
+var results={v:{},n:{}};
+
+function ge(id){return document.getElementById(id);}
+function gv(id){return parseFloat(ge(id).value)||0;}
+function fmt(n){return '$'+n.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fj(n){return n.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})+' jus';}
+function fp1(n){return n.toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1});}
+function fj2(n){return n.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+
+function getFactor(p,side){
+  var f=0;
+  ETAPAS.forEach(function(e){if(etapas[p][side][e.id]) f+=e.pct;});
+  return f;
+}
+
+function getBaseRange(p,side){
+  var cap=gv(p+'-cap'), int_=gv(p+'-int'), dem=gv(p+'-dem');
+  var total=cap+int_, sc=scenario[p];
+  if(side==='a'){
+    if(sc==='rechazo') return {fixed:false, pctMin:10, pctMax:30, ref:dem, label:'10% – 30% del crédito'};
+    return {fixed:true, val:total, label:'Monto sentencia'};
+  } else {
+    if(p==='v'){
+      if(sc==='parcial') return {fixed:false, pctMin:10, pctMax:50, ref:dem, label:'10% – 50% de la demanda'};
+      if(sc==='total')   return {fixed:false, pctMin:10, pctMax:30, ref:total, label:'10% – 30% del monto sentencia'};
+      return {fixed:true, val:dem, label:'Demanda actualizada'};
+    } else {
+      if(sc==='parcial'){var b=Math.max(total-dem,dem*0.5); return {fixed:true, val:b, label:'MAX(condena−demanda ; 50% dem.)'};}
+      if(sc==='total')  return {fixed:true, val:total, label:'Monto sentencia'};
+      return {fixed:true, val:dem, label:'Demanda actualizada'};
+    }
+  }
+}
+
+function getBase(p,side){
+  var r=getBaseRange(p,side);
+  if(r.fixed) return r.val;
+  var pct=gv(p+'-'+side+'-bsl');
+  return r.ref*(pct/100);
+}
+
+function updEtapas(p,side){
+  var html='';
+  ETAPAS.forEach(function(e){
+    var on=!!etapas[p][side][e.id];
+    var eid='cb-'+p+side+e.id;
+    html+='<label class="ei'+(on?' on':'')+'" for="'+eid+'">'+
+      '<input type="checkbox" id="'+eid+'"'+(on?' checked':'')+' onchange="togE(\''+p+'\',\''+side+'\',\''+e.id+'\')">'+
+      '<span class="el">'+e.label+'</span><span class="ep">'+Math.round(e.pct*100)+'%</span>'+
+    '</label>';
+  });
+  ge(p+'-'+side+'-eg').innerHTML=html;
+  var f=getFactor(p,side);
+  var el=ge(p+'-'+side+'-ef');
+  el.textContent=Math.round(f*100)+'%';
+  el.className='esum-v '+(f>=1?'full':'part');
+}
+
+function updBase(p,side){
+  var r=getBaseRange(p,side);
+  var sl=ge(p+'-'+side+'-bsl');
+  var rangoEl=ge(p+'-'+side+'-brango');
+  var badgeEl=ge(p+'-'+side+'-bbadge');
+  var valEl=ge(p+'-'+side+'-bval');
+  var endsEl=ge(p+'-'+side+'-bends');
+  rangoEl.textContent=r.label;
+  if(r.fixed){
+    sl.disabled=true;
+    badgeEl.textContent='fijo';
+    valEl.textContent=fmt(r.val);
+    endsEl.innerHTML='<span></span><span></span>';
+  } else {
+    sl.disabled=false;
+    sl.min=r.pctMin; sl.max=r.pctMax; sl.step=1;
+    var pct=gv(p+'-'+side+'-bsl');
+    if(pct<r.pctMin||pct>r.pctMax){ pct=Math.round((r.pctMin+r.pctMax)/2); sl.value=pct; }
+    var base=r.ref*(pct/100);
+    badgeEl.textContent=pct+'% → '+fmt(base);
+    valEl.textContent=fmt(base);
+    endsEl.innerHTML='<span>'+r.pctMin+'% ('+fmt(r.ref*r.pctMin/100)+')</span><span>'+r.pctMax+'% ('+fmt(r.ref*r.pctMax/100)+')</span>';
+  }
+}
+
+function updRes(p,side){
+  var jus=gv(p+'-jus')||46927.21;
+  var ue=gv(p+'-ue')||12368295.26;
+  var base=getBase(p,side);
+  var baseUE=ue>0?base/ue:0;
+  var tramo=getEscala36(baseUE);
+  var slC=ge(p+'-'+side+'-csl');
+  slC.min=tramo.min; slC.max=25;
+  var critValRaw=gv(p+'-'+side+'-csl');
+  if(critValRaw<tramo.min||critValRaw>25){ critValRaw=Math.round((tramo.min+25)/2*10)/10; slC.value=critValRaw; }
+  var cminEl=ge(p+'-'+side+'-cmin'), cmaxEl=ge(p+'-'+side+'-cmax'), tramoEl=ge(p+'-'+side+'-tramo36');
+  if(cminEl) cminEl.textContent=tramo.min+'%';
+  if(cmaxEl) cmaxEl.textContent='25%';
+  if(tramoEl) tramoEl.textContent='Base = '+fp1(baseUE)+' UE · Escala art. 36: '+tramo.label+' · mínimo legal '+tramo.min+'%';
+  var critPct=critValRaw/100;
+  var factor=getFactor(p,side);
+  ge(p+'-'+side+'-cbadge').textContent=fp1(critPct*100)+'%';
+  var raw=base*critPct;
+  var piso=20*jus;
+  var pisoAct=raw<piso;
+  var honSinFactor=Math.max(raw,piso);
+  var chk104=ge(p+'-'+side+'-104');
+  var add104=(chk104&&chk104.checked)?3*jus:0;
+  var hon=honSinFactor*factor+add104;
+  var honBruto=raw*factor+add104;
+  results[p][side]=hon;
+  var cls=side==='a'?'ac':'dm';
+  var pw=pisoAct?'<span class="bwarn">⚠ piso 20 jus</span>':'';
+  var fw=factor<1?'<span class="bwarn">Art.97 · '+Math.round(factor*100)+'%</span>':'';
+  var aw=add104?'<span class="badge-ok">+3 jus · art.104 inc.5</span>':'';
+  var mid=(tramo.min+25)/2;
+  var rows=[
+    {l:'Mínimo ('+fp1(tramo.min)+'%)', raw:base*(tramo.min/100)},
+    {l:'Punto medio ('+fp1(mid)+'%)',  raw:base*(mid/100)},
+    {l:'Máximo (25%)',                 raw:base*0.25}
+  ];
+  rows.forEach(function(r){
+    r.piso=r.raw<piso;
+    r.bruto=r.raw*factor+add104;
+    r.fin=Math.max(r.raw,piso)*factor+add104;
+    r.jus=r.fin/jus;
+  });
+  var h='<div class="rbox '+cls+'"><div class="rl2">Honorario '+pw+fw+aw+'</div>'+
+    '<div class="rv">'+fmt(hon)+'</div><div class="rj">'+fj(hon/jus)+'</div>'+
+    (pisoAct?'<div class="rawline">Sin aplicar el piso mínimo: <span class="neg">'+fmt(honBruto)+'</span></div>':'')+
+    '</div>'+
+    '<table class="ctbl"><thead><tr><th>Criterio</th><th>Importe</th><th>Jus</th></tr></thead><tbody>';
+  rows.forEach(function(r){
+    var isSel=Math.abs(r.fin-hon)<1;
+    h+='<tr'+(isSel?' class="sel"':'')+'><td>'+r.l+(r.piso?' <span class="ptxt">↑piso</span>':'')+'</td><td>'+fmt(r.fin)+(r.piso?'<br><span class="neg" style="font-size:10px">bruto: '+fmt(r.bruto)+'</span>':'')+'</td><td>'+fj2(r.jus)+'</td></tr>';
+  });
+  h+='</tbody></table>';
+  ge(p+'-'+side+'-res').innerHTML=h;
+}
+
+function updPeritos(p){
+  var jus=gv(p+'-jus')||46927.21;
+  var html='';
+  var totHon=0, totAp=0, totIva=0, list=[];
+  peritos[p].forEach(function(per,idx){
+    var t=TIPOS[per.tipo]||TIPOS.otro;
+    var pjus=per.jus||t.jus;
+    var hon=pjus*jus;
+    var ap=hon*t.aporte;
+    var iva=per.iva?hon*0.21:0;
+    totHon+=hon; totAp+=ap; totIva+=iva;
+    list.push({label:'Perito '+(idx+1)+' — '+t.label+' ('+pjus+' jus)', hon:hon});
+    html+='<div class="pblock">'+
+      '<div class="ptop"><span class="pname">Perito</span><span class="pbdg '+t.badge+'">'+t.label+(t.aporte>0?' · '+Math.round(t.aporte*100)+'%':' · sin aporte')+'</span></div>'+
+      '<div class="pgrid">'+
+        '<div class="fld"><label>Tipo</label><select onchange="chgT(\''+p+'\','+per.id+',this.value)">'+
+          Object.keys(TIPOS).map(function(k){return '<option value="'+k+'"'+(k===per.tipo?' selected':'')+'>'+TIPOS[k].label+'</option>';}).join('')+
+        '</select></div>'+
+        '<div class="fld"><label>Jus</label><select onchange="chgJ(\''+p+'\','+per.id+',this.value)">'+
+          [4,6,8,10,12,14,16,20,23].map(function(j){return '<option value="'+j+'"'+(j===pjus?' selected':'')+'>'+j+' jus — '+fmt(j*jus)+'</option>';}).join('')+
+        '</select></div>'+
+        '<label class="ivatog"><input type="checkbox"'+(per.iva?' checked':'')+' onchange="chgI(\''+p+'\','+per.id+',this.checked)"> IVA 21%</label>'+
+      '</div>'+
+      '<div class="prows">'+
+        '<div class="pr"><span class="prl">Honorario ('+pjus+' jus)</span><span class="prv">'+fmt(hon)+'</span></div>'+
+        (t.aporte>0?'<div class="pr"><span class="prl">Aporte ('+Math.round(t.aporte*100)+'%)</span><span class="prv">'+fmt(ap)+'</span></div>':'')+
+        (per.iva?'<div class="pr"><span class="prl">IVA (21%)</span><span class="prv">'+fmt(iva)+'</span></div>':'')+
+      '</div>'+
+      '<button class="delbtn" onclick="rmP(\''+p+'\','+per.id+')">✕ Quitar</button>'+
+    '</div>';
+  });
+  ge(p+'-peritos').innerHTML=html;
+  results[p].peritosHon=totHon;
+  results[p].peritosAp=totAp;
+  results[p].peritosIva=totIva;
+  results[p].peritosList=list;
+}
+
+function updTasas(p){
+  var cap=gv(p+'-cap'), int_=gv(p+'-int');
+  var total=cap+int_, ap=total*0.01;
+  ge(p+'-tasas').innerHTML=
+    '<div class="trow"><span class="trl">Total actualizado</span><span class="trv">'+fmt(total)+'</span></div>'+
+    '<div class="trow"><span class="trl">Tasa de justicia (2%)</span><span class="trv">'+fmt(total*0.02)+'</span></div>'+
+    '<div class="trow"><span class="trl">Aporte Ley 6468 — representación actora (1%)</span><span class="trv">'+fmt(ap)+'</span></div>'+
+    '<div class="trow"><span class="trl">Aporte Ley 6468 — representación demandada (1%)</span><span class="trv">'+fmt(ap)+'</span></div>'+
+    '<div class="trow tot"><span class="trl">Total aportes Ley 6468</span><span class="trv">'+fmt(ap*2)+'</span></div>';
+  results[p].tasa=total*0.02;
+  results[p].aporte1=ap;
+  results[p].aportes6468=ap*2;
+  results[p].cap=cap;
+  results[p].condena=total;
+}
+
+function updResumen(p){
+  var r=results[p];
+  var granTotal=(r.a||0)+(r.d||0)+(r.peritosHon||0)+(r.peritosAp||0)+(r.peritosIva||0)+(r.tasa||0)+(r.aporte1||0);
+  var peritosRows=(r.peritosList||[]).map(function(pl){
+    return '<div class="sum-row"><span class="sum-l">Honorario '+pl.label+'</span><span class="sum-v">'+fmt(pl.hon)+'</span></div>';
+  }).join('');
+  var html=
+    '<div class="sum-row"><span class="sum-l">Capital histórico</span><span class="sum-v">'+fmt(r.cap||0)+'</span></div>'+
+    '<div class="sum-row"><span class="sum-l">Capital de condena (actualizado)</span><span class="sum-v">'+fmt(r.condena||0)+'</span></div>'+
+    '<div class="sum-row sub"><span class="sum-l">↳ Suma (histórico + condena)</span><span class="sum-v">'+fmt((r.cap||0)+(r.condena||0))+'</span></div>'+
+    '<div style="border-top:1px solid var(--ac-bd);margin:8px 0 4px"></div>'+
+    '<div class="sum-row"><span class="sum-l">Honorarios abogado actor</span><span class="sum-v">'+fmt(r.a||0)+'</span></div>'+
+    '<div class="sum-row"><span class="sum-l">Honorarios abogado demandada</span><span class="sum-v">'+fmt(r.d||0)+'</span></div>'+
+    peritosRows+
+    (r.peritosAp?'<div class="sum-row sub"><span class="sum-l">↳ Aportes previsionales peritos</span><span class="sum-v">'+fmt(r.peritosAp)+'</span></div>':'')+
+    (r.peritosIva?'<div class="sum-row sub"><span class="sum-l">↳ IVA peritos</span><span class="sum-v">'+fmt(r.peritosIva)+'</span></div>':'')+
+    '<div class="sum-row"><span class="sum-l">Tasa de justicia (2%)</span><span class="sum-v">'+fmt(r.tasa||0)+'</span></div>'+
+    '<div class="sum-row"><span class="sum-l">Aportes Ley 6468 (1%)</span><span class="sum-v">'+fmt(r.aporte1||0)+'</span></div>'+
+    '<div class="sum-row total"><span class="sum-l">Total general (todos los rubros)</span><span class="sum-v">'+fmt(granTotal)+'</span></div>';
+  ge(p+'-resumen').innerHTML=html;
+}
+
+function upd(p){
+  ['a','d'].forEach(function(s){
+    updEtapas(p,s);
+    updBase(p,s);
+    updRes(p,s);
+  });
+  updPeritos(p);
+  updTasas(p);
+  updResumen(p);
+}
+
+function swTab(t){
+  document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('on');});
+  document.querySelectorAll('.pnl').forEach(function(d){d.classList.remove('on');});
+  document.querySelector('[onclick="swTab(\''+t+'\')"]').classList.add('on');
+  ge(t==='v'?'pv':'pn').classList.add('on');
+}
+function setSc(p,sc){
+  scenario[p]=sc;
+  ['parcial','total','rechazo'].forEach(function(s){ge(p+'-sc-'+s).classList.toggle('on',s===sc);});
+  ge(p+'-info').textContent=INFO[p][sc];
+  upd(p);
+}
+function togE(p,side,eid){
+  etapas[p][side][eid]=etapas[p][side][eid]?0:1;
+  upd(p);
+}
+function updJus(p){
+  var v=gv(p+'-jus')||46927.21;
+  var ue=gv(p+'-ue')||12368295.26;
+  ge('jusdisplay').textContent='$'+v.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})+' · $'+ue.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function addP(p){peritos[p].push({id:pcnt[p]++,tipo:'contador',iva:false,jus:TIPOS.contador.jus});updPeritos(p);updResumen(p);}
+function rmP(p,id){peritos[p]=peritos[p].filter(function(x){return x.id!==id;});updPeritos(p);updResumen(p);}
+function chgT(p,id,v){peritos[p].forEach(function(x){if(x.id===id){x.tipo=v;x.jus=TIPOS[v].jus;}});updPeritos(p);updResumen(p);}
+function chgJ(p,id,v){peritos[p].forEach(function(x){if(x.id===id) x.jus=parseInt(v);});updPeritos(p);updResumen(p);}
+function chgI(p,id,v){peritos[p].forEach(function(x){if(x.id===id) x.iva=v;});updPeritos(p);updResumen(p);}
+
+upd('v'); upd('n');
+</script>
+</body>
+</html>
