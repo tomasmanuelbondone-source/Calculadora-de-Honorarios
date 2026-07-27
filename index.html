@@ -721,18 +721,34 @@ function parseFechaAR(s){
   var p=s.split('/');
   return new Date(p[2],p[1]-1,p[0]);
 }
+function fetchConTimeout(url,ms){
+  var ctrl=new AbortController();
+  var t=setTimeout(function(){ctrl.abort();},ms);
+  return fetch(url,{signal:ctrl.signal}).finally(function(){clearTimeout(t);});
+}
 async function fetchJusUE(){
   var btn=ge('btn-update-jus');
   var status=ge('jus-update-status');
   var original=btn.textContent;
   btn.disabled=true; btn.textContent='Actualizando…';
   status.textContent='';
+  var target='https://www.justiciacordoba.gob.ar/Estatico/justiciaCordoba/data/CalculosJudiciales/JUS.json?v7.25';
+  var proxies=[
+    'https://corsproxy.io/?url='+encodeURIComponent(target),
+    'https://api.allorigins.win/raw?url='+encodeURIComponent(target),
+    'https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(target)
+  ];
+  var data=null;
+  for(var i=0;i<proxies.length;i++){
+    try{
+      var res=await fetchConTimeout(proxies[i],7000);
+      if(!res.ok) continue;
+      var parsed=await res.json();
+      if(Array.isArray(parsed)&&parsed.length){ data=parsed; break; }
+    }catch(e){ /* probar el siguiente */ }
+  }
   try{
-    var target='https://www.justiciacordoba.gob.ar/Estatico/justiciaCordoba/data/CalculosJudiciales/JUS.json?v7.25';
-    var proxied='https://corsproxy.io/?url='+encodeURIComponent(target);
-    var res=await fetch(proxied);
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    var data=await res.json();
+    if(!data) throw new Error('sin datos');
     var vigentes=data.filter(function(d){return d.IdTipoLegislacion==='2';});
     vigentes.sort(function(a,b){return parseFechaAR(a.periodo)-parseFechaAR(b.periodo);});
     var last=vigentes[vigentes.length-1];
