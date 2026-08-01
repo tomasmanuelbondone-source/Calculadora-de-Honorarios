@@ -108,6 +108,12 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
 .rv{font-size:23px;font-weight:700}
 .rbox.ac .rv{color:var(--ac-tx)}.rbox.dm .rv{color:var(--pu-tx)}
 .rj{font-size:12px;color:var(--tx2);margin-top:2px}
+.letras{margin-top:6px}
+.letras summary{cursor:pointer;color:var(--tx2);font-weight:600;font-size:11px;list-style:none;user-select:none}
+.letras summary::-webkit-details-marker{display:none}
+.letras summary:before{content:'🔤 Ver en letras';}
+.letras[open] summary:before{content:'🔤 Ocultar letras';}
+.letras-txt{font-size:12px;color:var(--tx);background:rgba(255,255,255,.6);border-radius:var(--r);padding:7px 10px;line-height:1.5;margin-top:5px}
 .bwarn{display:inline-flex;align-items:center;background:var(--wa-bg);color:var(--wa-tx);font-size:10px;padding:2px 7px;border-radius:20px;font-weight:700;border:1px solid var(--wa-bd)}
 .ctbl{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px}
 .ctbl th{text-align:left;color:var(--tx3);font-weight:600;padding:4px 5px;border-bottom:1px solid var(--bd);font-size:10px;text-transform:uppercase}
@@ -469,6 +475,48 @@ function fj(n){return n.toLocaleString('es-AR',{minimumFractionDigits:2,maximumF
 function fp1(n){return n.toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1});}
 function fj2(n){return n.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});}
 
+var U0_29=['cero','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte','veintiuno','veintidós','veintitrés','veinticuatro','veinticinco','veintiséis','veintisiete','veintiocho','veintinueve'];
+var DECENAS_T=['','','','treinta','cuarenta','cincuenta','sesenta','setenta','ochenta','noventa'];
+var CENTENAS_T=['','ciento','doscientos','trescientos','cuatrocientos','quinientos','seiscientos','setecientos','ochocientos','novecientos'];
+function convertirDecenas(n){
+  if(n<30) return U0_29[n];
+  var d=Math.floor(n/10), u=n%10;
+  return DECENAS_T[d]+(u>0?' y '+U0_29[u]:'');
+}
+function convertirCentenas(n){
+  if(n===0) return '';
+  if(n===100) return 'cien';
+  var c=Math.floor(n/100), resto=n%100;
+  var s=CENTENAS_T[c];
+  if(resto>0) s+=(s?' ':'')+convertirDecenas(resto);
+  return s;
+}
+function convertirHastaSeisCifras(n){
+  var miles=Math.floor(n/1000), resto=n%1000;
+  var partes=[];
+  if(miles>0) partes.push(miles===1?'mil':convertirCentenas(miles)+' mil');
+  if(resto>0) partes.push(convertirCentenas(resto));
+  return partes.join(' ').trim();
+}
+function numeroALetras(num){
+  num=Math.round(num);
+  if(num===0) return 'cero';
+  var neg=num<0; num=Math.abs(num);
+  var millones=Math.floor(num/1000000), resto=num%1000000;
+  var partes=[];
+  if(millones>0) partes.push(millones===1?'un millón':convertirHastaSeisCifras(millones)+' millones');
+  var restoTxt=convertirHastaSeisCifras(resto);
+  if(restoTxt) partes.push(restoTxt);
+  return (neg?'menos ':'')+partes.join(' ').trim();
+}
+function montoEnLetras(n){
+  var entero=Math.floor(n);
+  var centavos=Math.round((n-entero)*100);
+  var texto=numeroALetras(entero);
+  texto=texto.charAt(0).toUpperCase()+texto.slice(1);
+  return 'Pesos '+texto+' con '+String(centavos).padStart(2,'0')+'/100';
+}
+
 function getFactor(p,side){
   var f=0;
   ETAPAS.forEach(function(e){if(etapas[p][side][e.id]) f+=e.pct;});
@@ -588,6 +636,7 @@ function updRes(p,side){
   var h='<div class="rbox '+cls+'"><div class="rl2">Honorario '+pw+fw+aw+'</div>'+
     '<div class="rv">'+fmt(hon)+'</div><div class="rj">'+fj(hon/jus)+'</div>'+
     (pisoAct?'<div class="rawline">Sin aplicar el piso mínimo: <span class="neg">'+fmt(honBruto)+'</span></div>':'')+
+    '<details class="letras"><summary></summary><div class="letras-txt">'+montoEnLetras(hon)+'</div></details>'+
     '</div>'+
     '<table class="ctbl"><thead><tr><th>Criterio</th><th>Importe</th><th>Jus</th></tr></thead><tbody>';
   rows.forEach(function(r){
