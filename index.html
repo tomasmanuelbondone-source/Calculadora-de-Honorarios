@@ -155,7 +155,7 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
   <div><div class="t1">Calculadora de costas y honorarios · Proceso laboral</div><div class="t2">Cámara Única del Trabajo · Córdoba · Art. 97 Ley 9459 / Ley 11.042</div></div>
   <div class="jp">
     <div class="jl">Jus / UE vigente</div>
-    <div class="jv" id="jusdisplay">$46.927,21 · $12.368.295,26</div>
+    <div class="jv" id="jusdisplay">$47.912,68 · $12.628.029,46</div>
     <button id="btn-update-jus" class="jp-btn" onclick="fetchJusUE()">↻ Actualizar automáticamente</button>
     <div class="jp-status" id="jus-update-status"></div>
   </div>
@@ -186,18 +186,18 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
     <div class="ctit">Datos base</div>
     <div class="chint">Cargá los montos de la sentencia: son la base de todo el cálculo posterior.</div>
     <div class="g2" style="margin-bottom:12px">
-      <div class="fld"><label>Capital actualizado ($)</label><input type="number" id="v-capact" value="0" oninput="upd('v')"><span class="hint">Capital histórico + intereses. Sumalos con la <a href="https://www.bcra.gob.ar/calculadora-intereses-creditos-laborales-judicializados/" target="_blank">calculadora de intereses del BCRA</a></span></div>
-      <div class="fld"><label>Demanda actualizada ($)</label><input type="number" id="v-dem" value="0" oninput="upd('v')"><span class="hint">Actualizala con <a href="https://www.justiciacordoba.gob.ar/planillacalculosjudiciales/Pages/CalculadoraTasa.aspx" target="_blank">SEREN (TSJ Córdoba)</a></span></div>
+      <div class="fld"><label>Capital actualizado ($)</label><input type="text" inputmode="decimal" id="v-capact" value="0" oninput="upd('v')"><span class="hint">Capital histórico + intereses. Sumalos con la <a href="https://www.bcra.gob.ar/calculadora-intereses-creditos-laborales-judicializados/" target="_blank">calculadora de intereses del BCRA</a></span></div>
+      <div class="fld"><label>Demanda actualizada ($)</label><input type="text" inputmode="decimal" id="v-dem" value="0" oninput="upd('v')"><span class="hint">Actualizala con <a href="https://www.justiciacordoba.gob.ar/planillacalculosjudiciales/Pages/CalculadoraTasa.aspx" target="_blank">SEREN (TSJ Córdoba)</a></span></div>
     </div>
     <div class="g2">
       <div class="fld">
         <label>Valor del jus ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
-        <input type="number" id="v-jus" value="46927.21" oninput="upd('v');updJus('v')">
+        <input type="text" inputmode="decimal" id="v-jus" value="47912.68" oninput="upd('v');updJus('v')">
         <span class="hint"><a href="https://www.justiciacordoba.gob.ar/justiciacordoba/Servicios/JUSyUnidadEconomica/1" target="_blank">ver TSJ</a></span>
       </div>
       <div class="fld">
         <label>Valor de la Unidad Económica — UE ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
-        <input type="number" id="v-ue" value="12368295.26" oninput="upd('v');updJus('v')">
+        <input type="text" inputmode="decimal" id="v-ue" value="12628029.46" oninput="upd('v');updJus('v')">
         <span class="hint">Define el tramo de la escala de mínimos del art. 36</span>
       </div>
     </div>
@@ -297,8 +297,8 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
     <div class="ctit">Tasa de justicia y aportes</div>
     <div class="chint">Se calculan automáticamente sobre el monto total actualizado, respetando los mínimos legales vigentes.</div>
     <div class="g2" style="margin-bottom:12px">
-      <div class="fld"><label>Tasa de justicia — mínimo legal ($)</label><input type="number" id="v-tasamin" value="60957.08" oninput="upd('v')"><span class="hint">Equivalente a 1,5 jus al 01/01/2026</span></div>
-      <div class="fld"><label>Aporte Ley 6468 — mínimo por parte ($)</label><input type="number" id="v-apmin" value="18000" oninput="upd('v')"><span class="hint">Vigente desde 01/08/2026 · Caja de Abogados de Córdoba</span></div>
+      <div class="fld"><label>Tasa de justicia — mínimo legal ($)</label><input type="text" inputmode="decimal" id="v-tasamin" value="60957.08" oninput="upd('v')"><span class="hint">Equivalente a 1,5 jus al 01/01/2026</span></div>
+      <div class="fld"><label>Aporte Ley 6468 — mínimo por parte ($)</label><input type="text" inputmode="decimal" id="v-apmin" value="18000" oninput="upd('v')"><span class="hint">Vigente desde 01/08/2026 · Caja de Abogados de Córdoba</span></div>
     </div>
     <div id="v-tasas"></div>
   </div>
@@ -315,18 +315,18 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
     <div class="ctit">Datos base</div>
     <div class="chint">Cargá los montos de la sentencia: son la base de todo el cálculo posterior.</div>
     <div class="g2" style="margin-bottom:12px">
-      <div class="fld"><label>Capital actualizado ($)</label><input type="number" id="n-capact" value="0" oninput="upd('n')"><span class="hint">Capital histórico + intereses. Sumalos con la <a href="https://www.bcra.gob.ar/calculadora-intereses-creditos-laborales-judicializados/" target="_blank">calculadora de intereses del BCRA</a></span></div>
-      <div class="fld"><label>Demanda actualizada ($)</label><input type="number" id="n-dem" value="0" oninput="upd('n')"><span class="hint">Actualizala con <a href="https://www.justiciacordoba.gob.ar/planillacalculosjudiciales/Pages/CalculadoraTasa.aspx" target="_blank">SEREN (TSJ Córdoba)</a></span></div>
+      <div class="fld"><label>Capital actualizado ($)</label><input type="text" inputmode="decimal" id="n-capact" value="0" oninput="upd('n')"><span class="hint">Capital histórico + intereses. Sumalos con la <a href="https://www.bcra.gob.ar/calculadora-intereses-creditos-laborales-judicializados/" target="_blank">calculadora de intereses del BCRA</a></span></div>
+      <div class="fld"><label>Demanda actualizada ($)</label><input type="text" inputmode="decimal" id="n-dem" value="0" oninput="upd('n')"><span class="hint">Actualizala con <a href="https://www.justiciacordoba.gob.ar/planillacalculosjudiciales/Pages/CalculadoraTasa.aspx" target="_blank">SEREN (TSJ Córdoba)</a></span></div>
     </div>
     <div class="g2">
       <div class="fld">
         <label>Valor del jus ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
-        <input type="number" id="n-jus" value="46927.21" oninput="upd('n');updJus('n')">
+        <input type="text" inputmode="decimal" id="n-jus" value="47912.68" oninput="upd('n');updJus('n')">
         <span class="hint"><a href="https://www.justiciacordoba.gob.ar/justiciacordoba/Servicios/JUSyUnidadEconomica/1" target="_blank">ver TSJ</a></span>
       </div>
       <div class="fld">
         <label>Valor de la Unidad Económica — UE ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
-        <input type="number" id="n-ue" value="12368295.26" oninput="upd('n');updJus('n')">
+        <input type="text" inputmode="decimal" id="n-ue" value="12628029.46" oninput="upd('n');updJus('n')">
         <span class="hint">Define el tramo de la escala de mínimos del art. 36</span>
       </div>
     </div>
@@ -410,8 +410,8 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
     <div class="ctit">Tasa de justicia y aportes</div>
     <div class="chint">Se calculan automáticamente sobre el monto total actualizado, respetando los mínimos legales vigentes.</div>
     <div class="g2" style="margin-bottom:12px">
-      <div class="fld"><label>Tasa de justicia — mínimo legal ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">(próximamente)</span></label><input type="number" id="n-tasamin" value="0" oninput="upd('n')" disabled><span class="hint">Todavía no definido para Ley 11.042 — no se aplica ningún piso por ahora</span></div>
-      <div class="fld"><label>Aporte Ley 6468 — mínimo por parte ($)</label><input type="number" id="n-apmin" value="18000" oninput="upd('n')"><span class="hint">Vigente desde 01/08/2026 · Caja de Abogados de Córdoba</span></div>
+      <div class="fld"><label>Tasa de justicia — mínimo legal ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">(próximamente)</span></label><input type="text" inputmode="decimal" id="n-tasamin" value="0" oninput="upd('n')" disabled><span class="hint">Todavía no definido para Ley 11.042 — no se aplica ningún piso por ahora</span></div>
+      <div class="fld"><label>Aporte Ley 6468 — mínimo por parte ($)</label><input type="text" inputmode="decimal" id="n-apmin" value="18000" oninput="upd('n')"><span class="hint">Vigente desde 01/08/2026 · Caja de Abogados de Córdoba</span></div>
     </div>
     <div id="n-tasas"></div>
   </div>
@@ -592,8 +592,8 @@ function updBase(p,side){
 }
 
 function updRes(p,side){
-  var jus=gv(p+'-jus')||46927.21;
-  var ue=gv(p+'-ue')||12368295.26;
+  var jus=gv(p+'-jus')||47912.68;
+  var ue=gv(p+'-ue')||12628029.46;
   var base=getBase(p,side);
   var baseUE=ue>0?base/ue:0;
   var tramo=getEscala36(baseUE);
@@ -648,7 +648,7 @@ function updRes(p,side){
 }
 
 function updPeritos(p){
-  var jus=gv(p+'-jus')||46927.21;
+  var jus=gv(p+'-jus')||47912.68;
   var html='';
   var totHon=0, totAp=0, totIva=0, list=[];
   peritos[p].forEach(function(per,idx){
@@ -753,8 +753,8 @@ function togE(p,side,eid){
   upd(p);
 }
 function updJus(p){
-  var v=gv(p+'-jus')||46927.21;
-  var ue=gv(p+'-ue')||12368295.26;
+  var v=gv(p+'-jus')||47912.68;
+  var ue=gv(p+'-ue')||12628029.46;
   ge('jusdisplay').textContent='$'+v.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})+' · $'+ue.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
 }
 function addP(p){peritos[p].push({id:pcnt[p]++,tipo:'contador',iva:false,jus:TIPOS.contador.jus});updPeritos(p);updResumen(p);}
@@ -817,6 +817,36 @@ async function fetchJusUE(){
     btn.disabled=false; btn.textContent=original;
   }
 }
+
+function limpiarNumero(str){
+  str=String(str).replace(/[^\d.,\-]/g,'');
+  if(str.indexOf(',')!==-1){
+    str=str.replace(/\./g,'').replace(',','.');
+  } else {
+    var puntos=(str.match(/\./g)||[]).length;
+    if(puntos>1){
+      str=str.replace(/\./g,'');
+    } else if(puntos===1){
+      var decimales=str.split('.')[1];
+      if(!decimales||decimales.length!==2) str=str.replace(/\./g,'');
+    }
+  }
+  return str;
+}
+['v-capact','v-dem','v-jus','v-ue','v-tasamin','v-apmin','n-capact','n-dem','n-jus','n-ue','n-tasamin','n-apmin'].forEach(function(id){
+  var el=ge(id);
+  if(!el) return;
+  el.addEventListener('paste',function(){
+    setTimeout(function(){
+      el.value=limpiarNumero(el.value);
+      el.dispatchEvent(new Event('input',{bubbles:true}));
+    },0);
+  });
+  el.addEventListener('blur',function(){
+    var limpio=limpiarNumero(el.value);
+    if(limpio!==el.value){ el.value=limpio; el.dispatchEvent(new Event('input',{bubbles:true})); }
+  });
+});
 
 upd('v'); upd('n');
 </script>
