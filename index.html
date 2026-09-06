@@ -155,7 +155,7 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
   <div><div class="t1">Calculadora de costas y honorarios · Proceso laboral</div><div class="t2">Cámara Única del Trabajo · Córdoba · Art. 97 Ley 9459 / Ley 11.042</div></div>
   <div class="jp">
     <div class="jl">Jus / UE vigente</div>
-    <div class="jv" id="jusdisplay">$47.912,68 · $12.628.029,46</div>
+    <div class="jv" id="jusdisplay">$48.823,02 · $12.867.962,02</div>
     <button id="btn-update-jus" class="jp-btn" onclick="fetchJusUE()">↻ Actualizar automáticamente</button>
     <div class="jp-status" id="jus-update-status"></div>
   </div>
@@ -192,12 +192,12 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
     <div class="g2">
       <div class="fld">
         <label>Valor del jus ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
-        <input type="text" inputmode="decimal" id="v-jus" value="47912.68" oninput="upd('v');updJus('v')">
+        <input type="text" inputmode="decimal" id="v-jus" value="48823.02" oninput="upd('v');updJus('v')">
         <span class="hint"><a href="https://www.justiciacordoba.gob.ar/justiciacordoba/Servicios/JUSyUnidadEconomica/1" target="_blank">ver TSJ</a></span>
       </div>
       <div class="fld">
         <label>Valor de la Unidad Económica — UE ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
-        <input type="text" inputmode="decimal" id="v-ue" value="12628029.46" oninput="upd('v');updJus('v')">
+        <input type="text" inputmode="decimal" id="v-ue" value="12867962.02" oninput="upd('v');updJus('v')">
         <span class="hint">Define el tramo de la escala de mínimos del art. 36</span>
       </div>
     </div>
@@ -321,12 +321,12 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
     <div class="g2">
       <div class="fld">
         <label>Valor del jus ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
-        <input type="text" inputmode="decimal" id="n-jus" value="47912.68" oninput="upd('n');updJus('n')">
+        <input type="text" inputmode="decimal" id="n-jus" value="48823.02" oninput="upd('n');updJus('n')">
         <span class="hint"><a href="https://www.justiciacordoba.gob.ar/justiciacordoba/Servicios/JUSyUnidadEconomica/1" target="_blank">ver TSJ</a></span>
       </div>
       <div class="fld">
         <label>Valor de la Unidad Económica — UE ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
-        <input type="text" inputmode="decimal" id="n-ue" value="12628029.46" oninput="upd('n');updJus('n')">
+        <input type="text" inputmode="decimal" id="n-ue" value="12867962.02" oninput="upd('n');updJus('n')">
         <span class="hint">Define el tramo de la escala de mínimos del art. 36</span>
       </div>
     </div>
@@ -592,8 +592,8 @@ function updBase(p,side){
 }
 
 function updRes(p,side){
-  var jus=gv(p+'-jus')||47912.68;
-  var ue=gv(p+'-ue')||12628029.46;
+  var jus=gv(p+'-jus')||48823.02;
+  var ue=gv(p+'-ue')||12867962.02;
   var base=getBase(p,side);
   var baseUE=ue>0?base/ue:0;
   var tramo=getEscala36(baseUE);
@@ -648,7 +648,7 @@ function updRes(p,side){
 }
 
 function updPeritos(p){
-  var jus=gv(p+'-jus')||47912.68;
+  var jus=gv(p+'-jus')||48823.02;
   var html='';
   var totHon=0, totAp=0, totIva=0, list=[];
   peritos[p].forEach(function(per,idx){
@@ -753,8 +753,8 @@ function togE(p,side,eid){
   upd(p);
 }
 function updJus(p){
-  var v=gv(p+'-jus')||47912.68;
-  var ue=gv(p+'-ue')||12628029.46;
+  var v=gv(p+'-jus')||48823.02;
+  var ue=gv(p+'-ue')||12867962.02;
   ge('jusdisplay').textContent='$'+v.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})+' · $'+ue.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
 }
 function addP(p){peritos[p].push({id:pcnt[p]++,tipo:'contador',iva:false,jus:TIPOS.contador.jus});updPeritos(p);updResumen(p);}
