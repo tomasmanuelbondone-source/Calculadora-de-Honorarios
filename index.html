@@ -686,7 +686,9 @@ function updPeritos(p){
 }
 
 function updTasas(p){
-  var total=gv(p+'-capact');
+  var esRechazo=scenario[p]==='rechazo';
+  var total=esRechazo?gv(p+'-dem'):gv(p+'-capact');
+  var baseLabel=esRechazo?'Demanda actualizada (base)':'Capital actualizado';
   var tasaMin=gv(p+'-tasamin')||0;
   var apMin=gv(p+'-apmin')||0;
   var tasaRaw=total*0.02, tasaPiso=tasaRaw<tasaMin, tasa=Math.max(tasaRaw,tasaMin);
@@ -694,7 +696,7 @@ function updTasas(p){
   var pw1=tasaPiso?' <span class="bwarn">piso legal</span>':'';
   var pw2=apPiso?' <span class="bwarn">piso legal</span>':'';
   ge(p+'-tasas').innerHTML=
-    '<div class="trow"><span class="trl">Capital actualizado</span><span class="trv">'+fmt(total)+'</span></div>'+
+    '<div class="trow"><span class="trl">'+baseLabel+'</span><span class="trv">'+fmt(total)+'</span></div>'+
     '<div class="trow"><span class="trl">Tasa de justicia (2%)'+pw1+'</span><span class="trv">'+fmt(tasa)+'</span></div>'+
     '<div class="trow"><span class="trl">Aporte Ley 6468 — representación actora (1%)'+pw2+'</span><span class="trv">'+fmt(ap)+'</span></div>'+
     '<div class="trow"><span class="trl">Aporte Ley 6468 — representación demandada (1%)'+pw2+'</span><span class="trv">'+fmt(ap)+'</span></div>'+
@@ -703,6 +705,7 @@ function updTasas(p){
   results[p].aporte1=ap;
   results[p].aportes6468=ap*2;
   results[p].condena=total;
+  results[p].condenaLabel=baseLabel;
 }
 
 function updResumen(p){
@@ -712,7 +715,7 @@ function updResumen(p){
     return '<div class="sum-row"><span class="sum-l">Honorario '+pl.label+'</span><span class="sum-v">'+fmt(pl.hon)+'</span></div>';
   }).join('');
   var html=
-    '<div class="sum-row"><span class="sum-l">Capital actualizado</span><span class="sum-v">'+fmt(r.condena||0)+'</span></div>'+
+    '<div class="sum-row"><span class="sum-l">'+(r.condenaLabel||'Capital actualizado')+'</span><span class="sum-v">'+fmt(r.condena||0)+'</span></div>'+
     '<div style="border-top:1px solid var(--ac-bd);margin:8px 0 4px"></div>'+
     '<div class="sum-row"><span class="sum-l">Honorarios abogado actor</span><span class="sum-v">'+fmt(r.a||0)+'</span></div>'+
     '<div class="sum-row"><span class="sum-l">Honorarios abogado demandada</span><span class="sum-v">'+fmt(r.d||0)+'</span></div>'+
