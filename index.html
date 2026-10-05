@@ -155,7 +155,7 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
   <div><div class="t1">Calculadora de costas y honorarios · Proceso laboral</div><div class="t2">Cámara Única del Trabajo · Córdoba · Art. 97 Ley 9459 / Ley 11.042</div></div>
   <div class="jp">
     <div class="jl">Jus / UE vigente</div>
-    <div class="jv" id="jusdisplay">$48.823,02 · $12.867.962,02</div>
+    <div class="jv" id="jusdisplay">$51.345,90 · $13.532.900,17</div>
     <button id="btn-update-jus" class="jp-btn" onclick="fetchJusUE()">↻ Actualizar automáticamente</button>
     <div class="jp-status" id="jus-update-status"></div>
   </div>
@@ -172,7 +172,7 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
 
 <div class="tabs">
   <button class="tab on" onclick="swTab('v')">CA Viejo · Ley 9459</button>
-  <button class="tab" onclick="swTab('n')">CA Nuevo · Ley 11.042 (próximamente)</button>
+  <button class="tab" onclick="swTab('n')">CA Nuevo · Ley 11.042</button>
 </div>
 
 <div class="pnl on" id="pv">
@@ -192,12 +192,12 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
     <div class="g2">
       <div class="fld">
         <label>Valor del jus ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
-        <input type="text" inputmode="decimal" id="v-jus" value="48823.02" oninput="upd('v');updJus('v')">
+        <input type="text" inputmode="decimal" id="v-jus" value="51345.90" oninput="upd('v');updJus('v')">
         <span class="hint"><a href="https://www.justiciacordoba.gob.ar/justiciacordoba/Servicios/JUSyUnidadEconomica/1" target="_blank">ver TSJ</a></span>
       </div>
       <div class="fld">
         <label>Valor de la Unidad Económica — UE ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
-        <input type="text" inputmode="decimal" id="v-ue" value="12867962.02" oninput="upd('v');updJus('v')">
+        <input type="text" inputmode="decimal" id="v-ue" value="13532900.17" oninput="upd('v');updJus('v')">
         <span class="hint">Define el tramo de la escala de mínimos del art. 36</span>
       </div>
     </div>
@@ -321,12 +321,12 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
     <div class="g2">
       <div class="fld">
         <label>Valor del jus ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
-        <input type="text" inputmode="decimal" id="n-jus" value="48823.02" oninput="upd('n');updJus('n')">
+        <input type="text" inputmode="decimal" id="n-jus" value="51345.90" oninput="upd('n');updJus('n')">
         <span class="hint"><a href="https://www.justiciacordoba.gob.ar/justiciacordoba/Servicios/JUSyUnidadEconomica/1" target="_blank">ver TSJ</a></span>
       </div>
       <div class="fld">
         <label>Valor de la Unidad Económica — UE ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">· actualizar c/mes</span></label>
-        <input type="text" inputmode="decimal" id="n-ue" value="12867962.02" oninput="upd('n');updJus('n')">
+        <input type="text" inputmode="decimal" id="n-ue" value="13532900.17" oninput="upd('n');updJus('n')">
         <span class="hint">Define el tramo de la escala de mínimos del art. 36</span>
       </div>
     </div>
@@ -339,7 +339,7 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
       <button class="sb" id="n-sc-total" onclick="setSc('n','total')">Acogimiento total</button>
       <button class="sb" id="n-sc-rechazo" onclick="setSc('n','rechazo')">Rechazo</button>
     </div>
-    <div class="info" id="n-info">Base actor: monto sentencia (fijo) · Base demandada: MAX(condena − demanda ; 50% demanda)</div>
+    <div class="info" id="n-info">Art. 30 · Base actor: MAX(condena ; 50% demanda) · Base demandada: MAX(demanda − condena ; 50% demanda)</div>
   </div>
   <div class="card">
     <div class="ctit">Honorarios letrados</div>
@@ -442,9 +442,16 @@ var ESCALA36=[
   {max:100, min:12, label:'Más de 50 y hasta 100 UE'},
   {max:Infinity, min:10, label:'Más de 100 UE'}
 ];
-function getEscala36(baseUE){
-  for(var i=0;i<ESCALA36.length;i++){ if(baseUE<=ESCALA36[i].max) return ESCALA36[i]; }
-  return ESCALA36[ESCALA36.length-1];
+var ESCALA36_N=[
+  {max:20,  min:20, label:'Hasta 20 UE'},
+  {max:50,  min:16, label:'Más de 20 y hasta 50 UE'},
+  {max:100, min:12, label:'Más de 50 y hasta 100 UE'},
+  {max:Infinity, min:10, label:'Más de 100 UE'}
+];
+function getEscala36(baseUE,p){
+  var esc=(p==='n')?ESCALA36_N:ESCALA36;
+  for(var i=0;i<esc.length;i++){ if(baseUE<=esc[i].max) return esc[i]; }
+  return esc[esc.length-1];
 }
 var INFO={
   v:{
@@ -453,9 +460,9 @@ var INFO={
     rechazo:'Base actor: 10% – 30% del crédito reclamado (art. 31 inc. 1) · Base demandada: crédito + intereses (fijo)'
   },
   n:{
-    parcial:'Base actor: monto sentencia (fijo) · Base demandada: MAX(condena − demanda ; 50% demanda)',
-    total:  'Base actor: monto sentencia (fijo) · Base demandada: monto sentencia (fijo)',
-    rechazo:'Base actor: 10% – 30% del crédito reclamado · Base demandada: crédito + intereses (fijo)'
+    parcial:'Art. 30 · Base actor: MAX(condena ; 50% demanda) · Base demandada: MAX(demanda − condena ; 50% demanda)',
+    total:  'Art. 30 · Base actor: MAX(condena ; 50% demanda) · Base demandada: MAX(demanda − condena ; 50% demanda)',
+    rechazo:'Art. 30 · Condena = 0 → Base actor: 50% de la demanda (mínimo) · Base demandada: demanda actualizada completa'
   }
 };
 
@@ -526,19 +533,28 @@ function getFactor(p,side){
 function getBaseRange(p,side){
   var total=gv(p+'-capact'), dem=gv(p+'-dem');
   var sc=scenario[p];
+  if(p==='n'){
+    // Ley 11.042, art. 30: base del actor = monto por el que prospera la demanda;
+    // base del demandado = monto por el que se rechaza (demanda − condena);
+    // para ambos, la base no puede ser inferior al 50% de la demanda actualizada.
+    var condena=(sc==='rechazo')?0:total;
+    var piso50=dem*0.5;
+    var bruta=(side==='a')?condena:(dem-condena);
+    var conPiso=Math.max(bruta,piso50);
+    return {
+      fixed:true,
+      val:conPiso,
+      pisoBase:(dem>0 && bruta<piso50),
+      label:(side==='a')?'MAX(condena ; 50% demanda)':'MAX(demanda − condena ; 50% demanda)'
+    };
+  }
   if(side==='a'){
     if(sc==='rechazo') return {fixed:false, pctMin:10, pctMax:30, ref:dem, label:'10% – 30% del crédito'};
     return {fixed:true, val:total, label:'Monto sentencia'};
   } else {
-    if(p==='v'){
-      if(sc==='parcial') return {fixed:false, pctMin:10, pctMax:50, ref:dem, label:'10% – 50% de la demanda'};
-      if(sc==='total')   return {fixed:false, pctMin:10, pctMax:30, ref:total, label:'10% – 30% del monto sentencia'};
-      return {fixed:true, val:dem, label:'Demanda actualizada'};
-    } else {
-      if(sc==='parcial'){var b=Math.max(total-dem,dem*0.5); return {fixed:true, val:b, label:'MAX(condena−demanda ; 50% dem.)'};}
-      if(sc==='total')  return {fixed:true, val:total, label:'Monto sentencia'};
-      return {fixed:true, val:dem, label:'Demanda actualizada'};
-    }
+    if(sc==='parcial') return {fixed:false, pctMin:10, pctMax:50, ref:dem, label:'10% – 50% de la demanda'};
+    if(sc==='total')   return {fixed:false, pctMin:10, pctMax:30, ref:total, label:'10% – 30% del monto sentencia'};
+    return {fixed:true, val:dem, label:'Demanda actualizada'};
   }
 }
 
@@ -576,7 +592,7 @@ function updBase(p,side){
   rangoEl.textContent=r.label;
   if(r.fixed){
     sl.disabled=true;
-    badgeEl.textContent='fijo';
+    badgeEl.textContent=r.pisoBase?'⚠ piso: 50% de la demanda':'fijo';
     valEl.textContent=fmt(r.val);
     endsEl.innerHTML='<span></span><span></span>';
   } else {
@@ -592,11 +608,11 @@ function updBase(p,side){
 }
 
 function updRes(p,side){
-  var jus=gv(p+'-jus')||48823.02;
-  var ue=gv(p+'-ue')||12867962.02;
+  var jus=gv(p+'-jus')||51345.90;
+  var ue=gv(p+'-ue')||13532900.17;
   var base=getBase(p,side);
   var baseUE=ue>0?base/ue:0;
-  var tramo=getEscala36(baseUE);
+  var tramo=getEscala36(baseUE,p);
   var slC=ge(p+'-'+side+'-csl');
   slC.min=tramo.min; slC.max=25;
   var critValRaw=gv(p+'-'+side+'-csl');
@@ -622,6 +638,11 @@ function updRes(p,side){
   var fw=factor<1?'<span class="bwarn">Art.97 · '+Math.round(factor*100)+'%</span>':'';
   var aw=add104?'<span class="badge-ok">+3 jus · art.104 inc.5</span>':'';
   var mid=(tramo.min+25)/2;
+  if(p==='n'){
+    var rBase=getBaseRange(p,side);
+    if(rBase.pisoBase) aw+='<span class="bwarn">Base mín. 50% demanda (art. 30)</span>';
+    if(critValRaw<mid-1e-9) aw+='<span class="bwarn">% bajo el punto medio: debe fundarse (art. 36)</span>';
+  }
   var rows=[
     {l:'Mínimo ('+fp1(tramo.min)+'%)', raw:base*(tramo.min/100)},
     {l:'Punto medio ('+fp1(mid)+'%)',  raw:base*(mid/100)},
@@ -648,7 +669,7 @@ function updRes(p,side){
 }
 
 function updPeritos(p){
-  var jus=gv(p+'-jus')||48823.02;
+  var jus=gv(p+'-jus')||51345.90;
   var html='';
   var totHon=0, totAp=0, totIva=0, list=[];
   peritos[p].forEach(function(per,idx){
@@ -756,8 +777,8 @@ function togE(p,side,eid){
   upd(p);
 }
 function updJus(p){
-  var v=gv(p+'-jus')||48823.02;
-  var ue=gv(p+'-ue')||12867962.02;
+  var v=gv(p+'-jus')||51345.90;
+  var ue=gv(p+'-ue')||13532900.17;
   ge('jusdisplay').textContent='$'+v.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})+' · $'+ue.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
 }
 function addP(p){peritos[p].push({id:pcnt[p]++,tipo:'contador',iva:false,jus:TIPOS.contador.jus});updPeritos(p);updResumen(p);}
