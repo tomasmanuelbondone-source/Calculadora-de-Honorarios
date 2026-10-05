@@ -339,7 +339,7 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
       <button class="sb" id="n-sc-total" onclick="setSc('n','total')">Acogimiento total</button>
       <button class="sb" id="n-sc-rechazo" onclick="setSc('n','rechazo')">Rechazo</button>
     </div>
-    <div class="info" id="n-info">Art. 30 · Base actor: MAX(condena ; 50% demanda) · Base demandada: MAX(demanda − condena ; 50% demanda)</div>
+    <div class="info" id="n-info">Art. 30 · Inc. 1 (actor): condena · Inc. 2 (demandado): demanda − condena · Inc. 3 (ambos): ninguna base puede ser menor al 50% de la demanda</div>
   </div>
   <div class="card">
     <div class="ctit">Honorarios letrados</div>
@@ -460,9 +460,9 @@ var INFO={
     rechazo:'Base actor: 10% – 30% del crédito reclamado (art. 31 inc. 1) · Base demandada: crédito + intereses (fijo)'
   },
   n:{
-    parcial:'Art. 30 · Base actor: MAX(condena ; 50% demanda) · Base demandada: MAX(demanda − condena ; 50% demanda)',
-    total:  'Art. 30 · Base actor: MAX(condena ; 50% demanda) · Base demandada: MAX(demanda − condena ; 50% demanda)',
-    rechazo:'Art. 30 · Condena = 0 → Base actor: 50% de la demanda (mínimo) · Base demandada: demanda actualizada completa'
+    parcial:'Art. 30 · Inc. 1 (actor): condena · Inc. 2 (demandado): demanda − condena · Inc. 3 (ambos): ninguna base puede ser menor al 50% de la demanda',
+    total:  'Art. 30 · Inc. 1 (actor): condena · Inc. 2 (demandado): demanda − condena · Inc. 3 (ambos): ninguna base puede ser menor al 50% de la demanda',
+    rechazo:'Art. 30 · Condena = 0 → Inc. 1 (actor): 0, rige el inc. 3 (50% de la demanda) · Inc. 2 (demandado): demanda completa'
   }
 };
 
@@ -541,11 +541,22 @@ function getBaseRange(p,side){
     var piso50=dem*0.5;
     var bruta=(side==='a')?condena:(dem-condena);
     var conPiso=Math.max(bruta,piso50);
+    var pisoBase=(dem>0 && bruta<piso50);
+    var inc=pisoBase?3:(side==='a'?1:2);
+    var labels={
+      1:'Art. 30 inc. 1 · monto por el que prospera la demanda',
+      2:'Art. 30 inc. 2 · monto por el que se rechaza la demanda',
+      3:'Art. 30 inc. 3 · piso del 50% de la demanda (común a ambos)'
+    };
     return {
       fixed:true,
       val:conPiso,
-      pisoBase:(dem>0 && bruta<piso50),
-      label:(side==='a')?'MAX(condena ; 50% demanda)':'MAX(demanda − condena ; 50% demanda)'
+      pisoBase:pisoBase,
+      inc:inc,
+      incPropio:(side==='a')?1:2,
+      bruta:bruta,
+      piso50:piso50,
+      label:labels[inc]
     };
   }
   if(side==='a'){
@@ -592,9 +603,15 @@ function updBase(p,side){
   rangoEl.textContent=r.label;
   if(r.fixed){
     sl.disabled=true;
-    badgeEl.textContent=r.pisoBase?'⚠ piso: 50% de la demanda':'fijo';
+    if(r.inc){
+      badgeEl.textContent=r.inc===3?'inc. 3 · piso 50%':'inc. '+r.inc;
+      var s1=fmt(r.bruta)+' (inc. '+r.incPropio+')', s3=fmt(r.piso50)+' (inc. 3 · 50% demanda)';
+      endsEl.innerHTML='<span>'+(r.inc===3?s1:'<b>'+s1+'</b>')+'</span><span>'+(r.inc===3?'<b>'+s3+'</b>':s3)+'</span>';
+    } else {
+      badgeEl.textContent='fijo';
+      endsEl.innerHTML='<span></span><span></span>';
+    }
     valEl.textContent=fmt(r.val);
-    endsEl.innerHTML='<span></span><span></span>';
   } else {
     sl.disabled=false;
     sl.min=r.pctMin; sl.max=r.pctMax; sl.step=1;
@@ -640,7 +657,7 @@ function updRes(p,side){
   var mid=(tramo.min+25)/2;
   if(p==='n'){
     var rBase=getBaseRange(p,side);
-    if(rBase.pisoBase) aw+='<span class="bwarn">Base mín. 50% demanda (art. 30)</span>';
+    if(rBase.pisoBase) aw+='<span class="bwarn">Base: art. 30 inc. 3 (50% demanda)</span>';
     if(critValRaw<mid-1e-9) aw+='<span class="bwarn">% bajo el punto medio: debe fundarse (art. 36)</span>';
   }
   var rows=[
