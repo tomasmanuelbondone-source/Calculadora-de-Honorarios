@@ -410,7 +410,7 @@ input[type=range]{width:100%;accent-color:var(--ok);cursor:pointer}
     <div class="ctit">Tasa de justicia y aportes</div>
     <div class="chint">Se calculan automáticamente sobre el monto total actualizado, respetando los mínimos legales vigentes.</div>
     <div class="g2" style="margin-bottom:12px">
-      <div class="fld"><label>Tasa de justicia — mínimo legal ($) <span style="font-weight:400;font-size:10px;color:var(--tx3)">(próximamente)</span></label><input type="text" inputmode="decimal" id="n-tasamin" value="0" oninput="upd('n')" disabled><span class="hint">Todavía no definido para Ley 11.042 — no se aplica ningún piso por ahora</span></div>
+      <div class="fld"><label>Tasa de justicia — mínimo legal ($)</label><input type="text" inputmode="decimal" id="n-tasamin" value="60957.08" oninput="upd('n')"><span class="hint">Equivalente a 1,5 jus al 01/01/2026 (igual que en el CA Viejo)</span></div>
       <div class="fld"><label>Aporte Ley 6468 — mínimo por parte ($)</label><input type="text" inputmode="decimal" id="n-apmin" value="18000" oninput="upd('n')"><span class="hint">Vigente desde 01/08/2026 · Caja de Abogados de Córdoba</span></div>
     </div>
     <div id="n-tasas"></div>
@@ -605,8 +605,15 @@ function updBase(p,side){
     sl.disabled=true;
     if(r.inc){
       badgeEl.textContent=r.inc===3?'inc. 3 · piso 50%':'inc. '+r.inc;
-      var s1=fmt(r.bruta)+' (inc. '+r.incPropio+')', s3=fmt(r.piso50)+' (inc. 3 · 50% demanda)';
-      endsEl.innerHTML='<span>'+(r.inc===3?s1:'<b>'+s1+'</b>')+'</span><span>'+(r.inc===3?'<b>'+s3+'</b>':s3)+'</span>';
+      var l1='inc. '+r.incPropio+(r.incPropio===1?' · condena':' · demanda − condena');
+      var l3='inc. 3 · 50% de la demanda';
+      var fila=function(txt,monto,rige){
+        return '<div style="display:flex;justify-content:space-between;gap:8px;font-size:11.5px;padding:2px 0;'+(rige?'font-weight:700;color:var(--ok-tx)':'color:var(--tx2)')+'">'+
+          '<span>'+(rige?'✓ ':'')+txt+'</span><span>'+fmt(monto)+'</span></div>';
+      };
+      endsEl.style.display='block';
+      endsEl.style.fontSize='';
+      endsEl.innerHTML=fila(l1,r.bruta,r.inc!==3)+fila(l3,r.piso50,r.inc===3);
     } else {
       badgeEl.textContent='fijo';
       endsEl.innerHTML='<span></span><span></span>';
